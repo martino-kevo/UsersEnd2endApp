@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: boots_trap}">
+	<title>Users End To End App</title>
+</head>
+<body>
+	<div class="container offset-sm-2 col-md-8 mt-lg-5">
+		
+				<!-- NAVBAR SECTION -->
+		<div th:replace="~{fragments :: nav_bar}"></div>
+		
+				<!-- INTRO SECTION -->
+		<section class="pt-10 w-100 h-100" 
+		style="background-color: black;"
+		>
+					<!-- Intro Heading -->
+			<div class="row align-items-center text-white">
+				<div class="col-md-6">
+					<h1 class="m-4" 
+					style="font-family: monospace;">
+						<span class="d-inline-block fw-bold" 
+						style="font-family: monospace;">
+							Users End To End Security Application
+						</span>
+					</h1>
+				</div>
+				
+					<!-- Intro Description -->
+				<div class="col-md-6">
+					<h1 class="m-4" 
+					style="font-family: monospace;">
+						<span class="d-block mt-2 lh-base" style="font-size: 1.5rem; font-family: monospace;">
+							This is a website where you can create, get, update and delete
+							a User from the database, but has to be fully authenticated first
+						</span>
+					</h1>
+				</div>
+			</div>
+		</section>
+				
+				<!-- GET USERS SECTION -->
+		<section class="mb-5 mt-5">
+			<div class="row text-center p-4">
+				<h1 class="fw-bold mb-2">Get Users</h1>
+				<div class="d-block" 
+				style="background-color: darkblue; content: none; margin: 0 auto;
+				width: 12rem; height: 0.2rem;"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p style="font-size: 1.2rem;"><a href="#" th:href="@{/users}">click here</a> to get all Users from the database</p>
+				</div>
+			</div>
+		</section>
+		
+				<!-- FOOTER SECTION -->
+		<div th:replace="~{fragments :: footer}"></div>
+	</div>
+</body>
+</html>

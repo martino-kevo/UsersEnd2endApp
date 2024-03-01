@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments :: boots_trap}">
+	<title>User Registration Form</title>
+</head>	
+<body>
+	<div class="container col-md-offset-3 col-md-8 mt-lg-5">
+		
+				<!-- NAVBAR SECTION -->
+		<div th:replace="~{fragments :: nav_bar}"></div>
+		
+				<!-- shows registration successful msg -->
+		<div class="row m-2">
+			<div th:if="${param.success}" class="alert alert-success w-50 fade-out-element">
+				Registration successful
+			</div>
+		</div>
+		
+				<!-- REGISTRATION FORM SECTION -->
+		<form th:action="@{/registration/register}" method="post" th:object="${user}" class="px-4 pb-5" style="margin-bottom: 2.7rem; margin-top: 3rem;">
+			<h2 class="mb-4">User Registration Form</h2>
+			<div class="mb-3 row">
+				<label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+				<div class="col-sm-6">
+					<input type="text" id="firstName" autofocus="autofocus" 
+						class="form-control" required name="firstName" th:field="*{firstName}"/>
+				</div>	
+			</div>
+			<div class="mb-3 row">
+				<label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+				<div class="col-sm-6">
+					<input type="text" id="lastName" autofocus="autofocus" 
+						class="form-control" required name="lastName" th:field="*{lastName}"/>
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<label for="email" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-6">
+					<input type="email" id="email" autofocus="autofocus" 
+						class="form-control" required name="email" th:field="*{email}"/>
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<label for="password" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-sm-6">
+					<input type="password" id="password" autofocus="autofocus" 
+						class="form-control" required name="password" th:field="*{password}"/>
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-success">Register</button>
+				<span>Registered already? <a href="/" th:href="@{/login}">
+					Login here.
+				</a></span>
+			</div>
+		</form>
+		
+				<!-- FOOTER SECTION -->
+		<div th:replace="~{fragments :: footer}"></div>
+	</div>
+	
+			<!-- FADE OUT EFFECT -->
+	<script th:replace="~{fragments :: fade_out}"></script>
+</body>
+</html>

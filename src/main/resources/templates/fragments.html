@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="boots_trap">
+	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+				<!-- NAVBAR FRAGMENT -->
+	<div th:fragment="nav_bar">
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="#" th:href="@{/}">Users End To End App</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link" href="#" th:href="@{/users}">Users</a>
+		        </li>
+		       </ul>
+		       <ul class="navbar-nav navbar-right">
+		         <li class="nav-item" sec:authorize="!isAuthenticated()">
+		          <a class="nav-link" href="#" th:href="@{/registration/registration-form}">Register</a>
+		        </li>
+		         <li class="nav-item" sec:authorize="!isAuthenticated()">
+		          <a class="nav-link" href="#" th:href="@{/login}">Login</a>
+		        </li>
+		         <li class="nav-item" sec:authorize="isAuthenticated()">
+		          <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	</div>
+	
+				<!-- FOOTER FRAGMENT -->
+	<div th:fragment="footer">
+		
+		<footer class="bg-dark pt-4 pb-4">
+			<div class="row text-center text-white">
+				<div class="col-12">
+					<div class="fw-400" style="color: darkgrey;">
+						&COPY; Copyright 2024 <a href="#" style="color: lightgrey; text-decoration: none; :hover{color: aqua;}">
+						Users End To End Security Web Application</a> 
+						| Created by <a href="#" style="color: lightgrey; text-decoration: none; hover{color: aqua;};">
+						Kelvin</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+		<!-- FADE OUT EFFECT FRAGMENT -->
+	<script th:fragment="fade_out">
+		
+		/* Selects the html element in which the fade out effect will be applied to. 
+		Calls the setInterval method saying "that if the element's opacity is 1, decrease it 
+		by 0.1. This should be done repeatedly until the element's opacity is 0, then the interval 
+		will be stopped and the element will be hidden". 
+		Then the setTimeout method is called saying "call the fade out effect after 5 seconds". */
+         var element = document.querySelector('.fade-out-element');
+         function fadeOut(el){
+			 var opacity = 1;
+			 var interval = setInterval(function() {
+				 if(opacity > 0) {
+					 opacity -= 0.1;
+					 el.style.opacity = opacity;
+				 }
+				 else {
+					 clearInterval(interval);
+					 el.style.display = 'none';
+				 }
+               }, 50);
+		 }
+         
+         setTimeout(fadeOut, 5000, element);
+      </script>
+</body>
+</html>
