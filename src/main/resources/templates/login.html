@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments :: boots_trap}">
+	<title>User Login</title>
+</head>
+<body>
+	<div class="container offset-sm-2 col-md-8 mt-lg-5">
+		
+				<!-- NAVBAR SECTION -->
+		<div th:replace="~{fragments :: nav_bar}"></div>
+		
+				<!-- LOG IN FORM SECTION -->
+		<form th:action="@{/login}" method="post" class="px-4" style="margin-bottom: 11rem; margin-top: 3rem;">
+					<!-- shows errors if any -->
+			<div class="row mt-2">
+				<div th:if="${param.error}" class="col-sm-8 fade-out-element">
+					<p class="alert alert-danger">Invalid username or password</p>
+				</div>
+				
+				<div th:if="${param.userExists}" class="fade-out-element">
+					<p class="alert alert-danger">User already exists, please log in</p>
+				</div>
+				
+				<div th:if="${param.reset_success}" class="col-sm-8 fade-out-element">
+					<p class="alert alert-info">You have successfully reset your password, please log in here</p>
+				</div>
+			</div>
+			
+			<h2 class="mb-4">User Login Form</h2>
+			<div class="mb-3 row">
+				<label for="email" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-6">
+					<input type="email" id="email" autofocus="autofocus" 
+						class="form-control" required name="email"/>
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<label for="password" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-sm-6">
+					<input type="password" id="password" autofocus="autofocus" 
+						class="form-control" required name="password"/>
+				</div>
+			</div>
+			<div class="mb-3">
+				<button type="submit" name="login" id="login" class="btn btn-success">Login</button>
+				<span>Not registered yet? <a href="/" th:href="@{/registration/registration-form}">
+					Register.
+				</a></span>
+				<div class="vr"></div>
+				<div class="mt-2"><a href="/" th:href="@{/registration/forgot-password-form}">Forgot password.</a></div>
+			</div>
+		</form>
+		
+				<!-- FOOTER SECTION -->
+		<div th:replace="~{fragments :: footer}"></div>
+	</div>
+	
+			<!-- FADE OUT EFFECT -->
+	 <script th:replace="~{fragments :: fade_out}"></script>
+</body>
+</html>

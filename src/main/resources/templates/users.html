@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments :: boots_trap}">
+	<title>Users</title>
+</head>
+<body>
+	<div class="container col-md-offset-2 col-md-8 mt-lg-5">
+		
+				<!-- NAVBAR SECTION -->
+		<div th:replace="~{fragments :: nav_bar}"></div>
+		
+				<!-- shows update and delete success msg -->
+		<div class="row m-2 w-50">
+			<div th:if="${param.update_success}" class="alert alert-info fade-out-element">
+				<p>A User has been updated successfully</p>
+			</div>
+			
+			<div th:if="${param.add_success}" class="alert alert-success fade-out-element">
+				<p>User added successfully</p>
+			</div>
+			
+			<div th:if="${param.delete_success}" class="alert alert-info fade-out-element">
+				<p>A User has been deleted successfully</p>
+			</div>
+		</div>
+		
+				<!-- USERS DISPLAY SECTION -->
+				<div class="row mt-4 mb-2">
+					<div class="col-md-6">
+						<h2>All Users</h2>
+					</div>
+					<div class="col-md-6">
+						<p align="right"><a href="#" th:href="@{/users/add-user-form}" class="btn btn-info">Add a new user</a></p>
+					</div>
+				</div>
+				<section style="height: 330px; box-sizing: content-box;">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th scope="col">First Name</th>
+							<th scope="col">Last Name</th>
+							<th scope="col">Email</th>
+							<th colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${users}">
+							<td th:text="${user.firstName}"></td>
+							<td th:text="${user.lastName}"></td>
+							<td th:text="${user.email}"></td>
+							<td><a href="#" th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-info">Edit</a></td>
+							<td><a href="#" th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a></td>
+						</tr>
+					</tbody>
+		       </table>
+		       </section>
+		       
+		       			<!-- PAGINATION -->
+		       <div class="panel-footer">
+    				<nav aria-label="Page navigation example">
+					    Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+					    
+					    <ul class="pagination justify-content-center">
+					        <li class="page-item">
+					            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/users/page/' + ${currentPage - 1}}"><</a>
+								<span th:unless="${currentPage > 1}"></span>
+					        </li>
+					
+					        <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+        							<a class="page-link" th:if="${i != currentPage}" th:href="@{'/users/page/' + ${i}}">[[${i}]]</a>
+        							<span th:unless="${i != currentPage}" class="page-link active">[[${i}]]</span>
+					        </li>
+					
+					        <li class="page-item">
+					            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/users/page/' + ${currentPage + 1}}">></a>
+								<span th:unless="${currentPage < totalPages}"></span>
+					        </li>
+					    </ul>
+					</nav>
+				</div>
+		
+				<!-- FOOTER SECTION -->
+		<div th:replace="~{fragments :: footer}"></div>
+	</div>
+	
+			<!-- FADE OUT EFFECT -->
+	<script th:replace="~{fragments :: fade_out}"></script>
+</body>
+</html>
